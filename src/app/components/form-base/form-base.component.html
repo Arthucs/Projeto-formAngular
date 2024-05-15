@@ -1,0 +1,172 @@
+<!-- Construindo o HTML da página -->
+
+<body>
+<form id="form" [formGroup]="formBase" (ngSubmit)="onSubmit()">
+<!-- "formBase" é o identifcador do formGroup principal criado em "form-base.components.ts"
+a função "onSubmit" verifica se o formulário é válido e o envia. É ativada quando o botão "enviar" é clicado -->
+
+
+    <!-- div do campo de "Nome" 
+    O formControlName identifica o input no "formBuilder.group" construído em "form-base.components.ts" -->
+    <div class="form-option">
+        <label for="name">Nome Completo</label>
+        <input type="text" placeholder="Seu Nome" formControlName="nome">
+
+        <!-- O span com a mensagem de erro só aparece caso a função seja verdadeira. 
+        A função "verificaCampo" verifica se o campo está vazio ou incompleto depois do usuário ter clicado no campo, e logo após fora do campo.
+        Essa função é utilizada em todos os campos do formulário -->
+        <span *ngIf="verificaCampo('nome')">
+            Campo Obrigatório
+        </span>
+    </div>
+
+    <!-- div do campo de "Data de Nascimento" -->
+    <div class="form-option">
+        <label for="text">Data de Nascimento</label>
+        <input type="text" placeholder="dd/mm/aaaa" formControlName="dataNasc">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('dataNasc')">
+            Campo Obrigatório
+        </span>
+
+        <!-- A função "verificaDataNasc" verifica se o valor inserido no campo é inválido, ou seja, contém erros de validação. Espeficicamente sobre a validade da data em si. 
+            Todas as funções que seguem esse exemplo, "verificaX()" tem esse mesmo propósito e funcionam praticamente da mesma maneira -->
+        <span *ngIf="verificaDataNasc()">
+            Data Inválida
+        </span>
+    </div>
+
+    <!-- div do campo de "CPF" -->
+    <div class="form-option">
+        <label for="cpf">CPF</label>
+        <input type="text" mask="000.000.000-00" placeholder="Seu CPF" formControlName="cpf">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('cpf')">
+            Campo Obrigatório
+        </span>
+
+        <!-- A função "verificaCpf" verifica se o valor inserido no campo contém erros de validação, especificamente sobre o CPF (se é inexistente) -->
+        <span *ngIf="verificaCpf()">
+            CPF Inválido
+        </span>
+    </div>
+
+    <!-- div do campo de "E-mail" -->
+    <div class="form-option">
+        <label for="email">E-mail</label>
+        <input type="email" placeholder="Seu e-mail de preferencia" formControlName="email">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('email')">
+            Campo Obrigatório
+        </span>
+
+        <!-- A função "verificaEmail" verifica se o valor inserido no campo contém erros de validação, especificamente do tipo Email -->
+        <span *ngIf="verificaEmail()">
+            Email Inválido
+        </span>
+    </div>
+
+    <!-- div do campo de "Telefone" -->
+    <div class="form-option">
+        <label for="tel">Telefone</label>
+        <input type="text" mask="(00)00000-0000" placeholder="Seu Telefone" formControlName="tel">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('tel')">
+            Campo Obrigatório
+        </span>
+
+        <!-- A função "verificaTel" verifica se o valor inserido no campo contém erros de validação, especificamente sobre o número de Telefone (se é um número inexistente) -->
+        <span *ngIf="verificaTel()">
+            Número Inválido
+        </span>
+    </div>
+
+    <!-- div dos campos que constituem o grupo "endereco", que contém: "CEP", "Rua", "Número", "Complemento", "Bairro", "Cidade" e "Estado" -->
+    <div class="form-option" formGroupName="endereco">
+
+        <!-- label do campo de "CEP" -->
+        <label for="text">CEP</label>
+        <input type="text" mask="00000-000" placeholder="CEP" formControlName="cep" 
+        (blur)="ConsultaCEP()">
+        <!-- A função "ConsultaCEP()" obtém os dados da pesquisa ViaCEP utilizando o valor do campo e substitui os valores dos outros campos desse formGroup com base nesses dados.
+        Realizando o preenchimento automático desses campos. -->
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('endereco.cep')">
+            Campo Obrigatório
+        </span>
+
+        <!-- A função "verificarCEP" verifica se o valor inserido no campo contém erros de validação, especificamente sobre o formato e a existência do CEP -->
+        <span *ngIf="verificarCEP()">
+            CEP Inválido
+        </span>
+        
+
+        <!-- label do campo de "Rua" -->
+        <label for="text">Rua</label>
+        <input type="text" placeholder="Rua" formControlName="rua">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('endereco.rua')">
+            Campo Obrigatório
+        </span>
+
+
+        <!-- label do campo de "Número" -->
+        <label for="text">Número</label>
+        <input type="text" mask="000" placeholder="Número" formControlName="num">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('endereco.num')">
+            Campo Obrigatório
+        </span>
+
+
+        <!-- label do campo de "Complemento" -->
+        <label for="text">Complemento</label>
+        <input type="text" placeholder="Complemento" formControlName="comp">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('endereco.comp')">
+            Campo Obrigatório
+        </span>
+
+
+        <!-- label do campo de "Bairro" -->
+        <label for="text">Bairro</label>
+        <input type="text" placeholder="Bairro" formControlName="bairro">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('endereco.bairro')">
+            Campo Obrigatório
+        </span>
+
+
+        <!-- label do campo de "Cidade" -->
+        <label for="text">Cidade</label>
+        <input type="text" placeholder="Cidade" formControlName="cidade">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('endereco.cidade')">
+            Campo Obrigatório
+        </span>
+
+        
+        <!-- label do campo de "Estado" -->
+        <label for="text">Estado</label>
+        <input type="text" placeholder="Estado" formControlName="estado">
+
+        <!-- Mensagens de Erro -->
+        <span *ngIf="verificaCampo('endereco.estado')">
+            Campo Obrigatório
+        </span>
+    </div>
+    
+    <!-- Botão que realiza o envio do formulário -->
+    <input id="btn" type="submit">
+</form>
+</body>

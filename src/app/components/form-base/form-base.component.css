@@ -1,0 +1,58 @@
+/*Estilizando o Formulário*/
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Definindo o tamanho do Formulário na tela*/
+form {
+    width: 800px;
+    margin: 0 auto;
+}
+
+/*Estilizando as divs de cada campo do Formulário*/
+.form-option {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+/*Estilizando labels dentro de cada div*/
+.form-option label {
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/*Estilizando os campos em si*/
+input {
+    font-size: 12pt;
+    border-color: rgb(158, 27, 158);
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.26) 2px 2px 5px;
+    border-radius: 10px;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+/*Estilizando o botão "Enviar"*/
+#btn {
+    padding: auto;
+    border-radius: 15px;
+    border: none;
+    width: 150px;
+    background-color: rgb(158, 27, 158);
+    color:aliceblue;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 50px;
+    box-shadow: rgba(0, 0, 0, 0.801) 2px 2px 5px;
+    
+}
+
+/*Estilizando as mensagens de erro*/
+span {
+    color: red;
+    font-style: italic;
+    padding: 3px;
+}
