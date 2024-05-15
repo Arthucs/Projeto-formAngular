@@ -1,0 +1,20 @@
+/*Estilizando o cabeçalho da página (Título + descrição)*/
+#desc {
+    width: 800px;
+    margin: 0 auto;
+    background-color: rgb(252, 240, 255);
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    font-size: 16pt;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.281) 2px 2px 5px;
+}
+
+/*Estilo da tag <hr> que separa o cabeçalho do formulário*/
+hr {
+    width: 800px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.459);
+}
